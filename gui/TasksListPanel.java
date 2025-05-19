@@ -4,6 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import core.Task;
@@ -18,7 +19,8 @@ public class TasksListPanel extends JPanel implements ActionListener {
 
     final private JLabel title;
     final private JButton addBtn;
-    final private JPanel taskListPanel;
+    final private JPanel tasksContainer;
+    final private JScrollPane taskListPanel;
     final private JPanel input;
     final private JTextField entry;
     final private JButton okBtn;
@@ -37,13 +39,16 @@ public class TasksListPanel extends JPanel implements ActionListener {
         title.setForeground(fgColor);
         title.setFont(font);
         add(title, BorderLayout.NORTH);
-
+        
         // Panel: Were you will find the list of task
-        taskListPanel = new JPanel();
-        taskListPanel.setLayout(new BoxLayout(taskListPanel, BoxLayout.Y_AXIS));
-        taskListPanel.setBackground(bgColor);
+        tasksContainer = new JPanel();
+        tasksContainer.setLayout(new BoxLayout(tasksContainer, BoxLayout.Y_AXIS));
+        tasksContainer.setBackground(bgColor);
+        tasksContainer.setVisible(true);
+
+        taskListPanel = new JScrollPane(tasksContainer);
         taskListPanel.setVisible(true);
-        add(taskListPanel);
+        add(taskListPanel, BorderLayout.CENTER);
         
         // Footer for add a task
         addBtn = new JButton("Add");
@@ -70,7 +75,7 @@ public class TasksListPanel extends JPanel implements ActionListener {
             add(input, BorderLayout.SOUTH);
         } else if (e.getSource() == okBtn) {
             if (!entry.getText().equals("")) {
-                taskListPanel.add(new TaskPanel(new Task(entry.getText())));
+                tasksContainer.add((new TaskPanel(new Task(entry.getText()))));
                 entry.setText("");
             }
             remove(input);

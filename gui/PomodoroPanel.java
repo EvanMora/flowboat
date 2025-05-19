@@ -23,6 +23,7 @@ public class PomodoroPanel extends JPanel implements ActionListener, TimerUpdate
 
     private final Font font;
     final Color fgColor = new Color(0xf5f6df);
+    final Color btnColor = new Color(0x5a8f78);
 
     public PomodoroPanel(int width, int height, Color bgColor) {
         setBackground(bgColor);
@@ -55,7 +56,7 @@ public class PomodoroPanel extends JPanel implements ActionListener, TimerUpdate
         startBtn.addActionListener(this);
         btnPanel.add(startBtn);
 
-        timer = new PomodoroTimer(25,5, this);
+        timer = new PomodoroTimer(2,1, this);
     }
 
     @Override
