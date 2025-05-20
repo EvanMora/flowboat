@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class MainWindow extends JFrame {
@@ -23,6 +24,8 @@ public class MainWindow extends JFrame {
         setResizable(false);
         setAlwaysOnTop(true);
         setVisible(true);
+        ImageIcon icon = new ImageIcon("resorses/FloatBoatLogo.png");
+        setIconImage(icon.getImage());
         
         pomodoroPanel = new PomodoroPanel(width, height, bgColor);
         add(pomodoroPanel);

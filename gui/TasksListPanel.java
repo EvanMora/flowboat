@@ -38,6 +38,7 @@ public class TasksListPanel extends JPanel implements ActionListener {
         title = new JLabel("Tasks");
         title.setForeground(fgColor);
         title.setFont(font);
+        title.setHorizontalAlignment(JLabel.CENTER);
         add(title, BorderLayout.NORTH);
         
         // Panel: Were you will find the list of task

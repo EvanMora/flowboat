@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +22,8 @@ public class PomodoroPanel extends JPanel implements ActionListener, TimerUpdate
     private final JButton startBtn;
     private final JButton resetBtn;
 
-    private final Font font;
+    private final Font textFont;
+    private final Font timerFont;
     final Color fgColor = new Color(0xf5f6df);
     final Color btnColor = new Color(0x5a8f78);
 
@@ -31,16 +33,19 @@ public class PomodoroPanel extends JPanel implements ActionListener, TimerUpdate
         setLayout(new GridLayout(3, 1));
         setVisible(true);
 
-        font = new Font("consolas", Font.PLAIN, 26);
+        textFont = new Font("consolas", Font.PLAIN, 24);
+        timerFont = new Font("Consolas", Font.BOLD, 30);
 
         typeLabel = new JLabel();
-        typeLabel.setFont(font);
+        typeLabel.setFont(textFont);
         typeLabel.setForeground(fgColor);
+        typeLabel.setHorizontalAlignment(JLabel.CENTER);
         add(typeLabel);
 
         pomodoroLabel = new JLabel();
-        pomodoroLabel.setFont(font);
+        pomodoroLabel.setFont(timerFont);
         pomodoroLabel.setForeground(fgColor);
+        pomodoroLabel.setHorizontalAlignment(JLabel.CENTER);
         add(pomodoroLabel);
 
         JPanel btnPanel = new JPanel(new GridLayout(1, 2));
@@ -56,7 +61,7 @@ public class PomodoroPanel extends JPanel implements ActionListener, TimerUpdate
         startBtn.addActionListener(this);
         btnPanel.add(startBtn);
 
-        timer = new PomodoroTimer(2,1, this);
+        timer = new PomodoroTimer(1,5, this);
     }
 
     @Override
@@ -88,5 +93,10 @@ public class PomodoroPanel extends JPanel implements ActionListener, TimerUpdate
     @Override
     public void onTimerTypeChage() {
         startBtn.setText("Start");
+    }
+
+    @Override
+    public void timeFinished() {
+        Toolkit.getDefaultToolkit().beep();
     }
 }

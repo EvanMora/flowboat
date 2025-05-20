@@ -81,6 +81,7 @@ public class PomodoroTimer implements ActionListener {
             seconds--;
         }
         if (minutes == 0 && seconds == 0) {
+            listener.timeFinished();
             timer.stop();
             isRunning = false;
             listener.onTimerTypeChage();
